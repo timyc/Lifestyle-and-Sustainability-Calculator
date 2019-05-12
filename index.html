@@ -1,0 +1,585 @@
+---
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Calculate your life score!">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Lifestyle & Sustainability Calculator</title>
+		<!-- Bootstrap stylesheets -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css" integrity="sha256-+xqVrdbLgHjiKF8ULvcwzQ545r7lCVfOqXlNJCB3XOg=" crossorigin="anonymous" />
+		<!-- Stylesheets for additional libraries -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link rel="icon" href="favicon.ico">
+		<!-- Self style stuff -->
+		<style>
+			.img-containit {
+				width:100%;
+				object-fit:cover;
+			}
+			#graph1 {
+				max-width:800px;
+				min-height:300px;
+				margin: 0 auto;
+			}
+			#criteria3Slider .slider-selection {
+				background: #BABABA;
+			}
+		</style>
+		<!-- Bootstrap required scripts -->
+		<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<!-- App required scripts -->
+		<script src= "js/app.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+		<!-- Bootstrap ENABLE GLOBAL TOOLTIPS -->
+		<script>
+			$(function () {
+  				$('[data-toggle="tooltip"]').tooltip()
+			})
+		</script>
+		{% seo %}
+	</head>
+	<body style="height:auto;min-height:100vh;">
+		<nav class="navbar fixed-top navbar-dark" style="background:linear-gradient(to bottom, #009933 0%, #006600 100%);">
+			<div class = "container">
+  				<a class="navbar-brand" href="#">
+    				Lifestyle & Sustainability Calculator
+  				</a>
+  			</div>
+		</nav>
+		<div id="imgPreload" style="display:none;"></div>
+		<!-- Page 1 START -->
+		<div id="page1" class="h-100">
+			<div class="container-fluid h-100" style="background-image:url(img/forest1.jpeg);background-repeat:no-repeat;background-size:100% 100%;">
+				<center>
+					<div class="row container">
+						<div id="heightHack" style="height:100vh"></div>
+						<div class="col mt-5">
+							<div class="card mt-5 border-success text-success">
+  								<div class="card-body">
+  									<h3 class="card-title">Even seemingly harmless actions can have large environmental impacts.</h3>
+  									<p>Did you know that even the most conservative Americans leave ecological footprints twice the size of the global average footprint? The current way that Americans are living is <i>unsustainable</i>. Do you want to compare yourself to the average American? To do so, click the "Let's Start!" button below. Seemingly harmless questions may yield surprising insights based on the response chosen. To view the background image on each page without obstructions, simply click the "(Click Here to View Background)" on each card header. To bring back the User Interface, click the same place again.
+  									</p>
+  									<img src="img/deadtree.png" width="300px" height="300px" />
+  									<div id="preloadText"></div><br/>
+  									<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(1)">Let's Start!</button>&nbsp;<button class="btn btn-outline-secondary" onclick="preloadImages()" id="preloadIButton">Preload Images (9.1MB)</button></center>
+  									<center><small>Preloading images makes viewing background images more smooth.</small></center>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</center>
+			</div>	
+		</div>
+		<!-- Page 1 END -->
+		<!-- Page 2 START -->
+		<div id="page2" class="h-100" style="display:none;opacity:0;">
+			<div class="container-fluid h-100" style="background-image:url(img/infographic-card1-blurred.png);background-repeat:no-repeat;background-size:100% 100%;" id="containercard1">
+				<div class="row" id="card1">
+					<div id="heightHack" style="height:100vh;"></div>
+					<div class="col mt-5">
+						<div class="card mt-5 mb-5 border-primary text-primary">
+							<div class="card-header"> 
+								<div id="deopacitizecard1" onclick="deOpacitize('card1')">Earth Systems and Resources (Click Here to View Background)</div>
+								<div id="reopacitizecard1" onclick="reOpacitize('card1')" style="display:none;">Earth Systems and Resources (Click Here to Hide Background)</div>
+							</div>
+  							<div class="card-body">
+  								<label for = "criteria1">Is the majority of your consumed vegetables bought from a grocery store?</label><i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" data-html="true" title="<div class='text-justify'>Water is a precious resource on Earth. It can be a renewable resource but the pace at which humans are using it is not. This connects to the principles of sustainability.</div>"></i>
+    							<select class = "form-control" id = "criteria1">
+    								<option value = ""></option>
+      								<option value = "yes">Yes</option>
+      								<option value = "no">No</option>
+    							</select>
+    							<label for = "criteria2">Have you bought any diamond jewelry in the past year?</label><i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" data-html="true" title="<div class='text-justify'>Mining usually results in the pollution of a nearby water source or other types of pollution. This connects with the polluters pay principle as many miners in Africa die from later health issues or during the mining process.</div>"></i>
+    							<select class = "form-control" id = "criteria2">
+    								<option value = ""></option>
+    								<option value = "yes">Yes</option>
+      								<option value = "no">No</option>
+    							</select>
+    							<label for = "criteria3">How many times do you eat meat each week?</label><i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" data-html="true" title="<div class='text-justify'>Meat production uses a lot of water. It can also result in the pollution of nearby water sources of feces runoff. The amount of methane that these animals usually produce is also unsustainable.</div>"></i><br />
+    							<input id="criteria3" data-slider-id='criteria3Slider' type="text" data-slider-min="0" data-slider-max="21" data-slider-step="1" data-slider-value="0" />&nbsp;&nbsp;&nbsp;<b><span id="criteria3SliderVal">0</span></b>
+  								<center><small>Please make sure all fields are filled out so you don't have to come back later.</small></center>
+  								<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="prevQuestion(2)">Prev</button>&nbsp;<button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(2)">Next</button></center>
+  							</div>
+  						</div>
+  					</div>
+  					<div class = "col mt-5">
+  						<div class="card mt-5 mb-5 border-danger text-danger">
+  							<div class="card-header">Generated Data and Insight
+  							</div>
+  							<div class="card-body">
+  								<ul class="list-group">
+  									<li class="list-group-item" id="albedoGraph" style="display:none;opacity:0;">
+  										Farm animals produce high concentrations of methane, a greenhouse gas and a leading contributor to global warming. Albedo is the proportion of light that is reflected, usually off a white surface. As global warming causes more ice to melt, albedo is decreased. <em class="text-success">By shifting to a more plant-based diet, greenhouse emissions can be reduced.</em>
+  										<canvas id="graph1"></canvas><center><i class="text-primary">Data from the National Snow and Ice Data Center</i></center>
+  									</li>
+  									<li class="list-group-item" id="diamondBad" style="display:none;opacity:0;">Although the mining of diamonds is <em>generally cleaner</em> than the mining of metals such as gold, diamond mining causes severe soil erosion and deforestation. Diamond mining can also be detrimental to aquatic life in local rivers. Legislations have been created in countries like Canada, but in most African countries, diamond mining is still as harmful as before. <em class="text-success">Unlike purchasing vegetables from grocery stores, the environmental impacts of diamond mining is completely preventable. A large percentage of diamonds are mined for fine jewelry creation, while a smaller percentage goes to industrial use. If no one bought diamonds for their cosmetic looks, less diamonds would be mined.</em></li>
+  									<li class="list-group-item">Your Unnecessary Water Usage ≈ <b id="waterGFromVeg">0.0</b> gallons year. <b id ="addVegInfo" style="display:none;opacity:0;">Every day vegetables, on average, require <em>23.8</em> gallons of water to yield a pound (lb) of harvest. <em class="text-success">This unnecessary additional water usage can be completely eliminated by planting your own garden and capturing used water from daily activities such as washing hands or dishes to water the plants so no additional water will be used for watering.</em> An average American consumes <em>415</em> lbs of vegetables a year. <i class="fas fa-question-circle" data-toggle="modal" data-target="#modalCrit1"></i></b></li>
+  								</ul>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+			<!-- Modal for TOOLTIPS -->	
+			<div class="modal fade" id="modalCrit1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  				<div class="modal-dialog" role="document">
+    				<div class="modal-content">
+      					<div class="modal-header">
+        					<h5 class="modal-title" id="modalCrit1Label">Average water usage per lb of produce</h5>
+        					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          						<span aria-hidden="true">&times;</span>
+        					</button>
+      					</div>
+      					<div class="modal-body">
+        					<ul class="list-group list-group-flush">
+        						<li class="list-group-item">Lettuce - <b>15 gallons</b></li>
+        						<li class="list-group-item">Tomatoes - <b>22 gallons</b></li>
+        						<li class="list-group-item">Cabbage - <b>24 gallons</b></li>
+        						<li class="list-group-item">Cucumbers - <b>28 gallons</b></li>
+        						<li class="list-group-item">Potatoes - <b>30 gallons</b></li>
+        					</ul>
+      					</div>
+      					<div class="modal-footer">
+        					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      					</div>
+    				</div>
+  				</div>
+			</div>
+			<!-- Modal END -->
+		</div>
+		<!-- Page 2 END -->
+		<!-- Page 3 START -->
+		<div id="page3" class="h-100" style="display:none;opacity:0;">
+			<div class="container-fluid h-100" style="background-image:url(img/infographic-card2-blurred.png);background-repeat:no-repeat;background-size:100% 100%;" id="containercard2">
+				<div class="row" id="card2">
+					<div id="heightHack" style="height:100vh;"></div>
+					<div class="col mt-5">
+						<div class="card mt-5 mb-5 border-primary text-primary">
+							<div class="card-header"> 
+								<div id="deopacitizecard2" onclick="deOpacitize('card2')">The Living World (Click Here to View Background)</div>
+								<div id="reopacitizecard2" onclick="reOpacitize('card2')" style="display:none;">The Living World (Click Here to Hide Background)</div>
+							</div>
+  							<div class="card-body">
+  								<label for = "criteria4">What material is your house made of?</label>
+    							<select class = "form-control" id = "criteria4">
+    								<option value = ""></option>
+      								<option value = "wood">Wood</option>
+      								<option value = "concrete">Concrete</option>
+      								<option value = "steel">Steel</option>
+    							</select>
+    							<label for = "criteria5">Are you still using coal as your primary way of generating electricity?</label>
+    							<select class = "form-control" id = "criteria5">
+    								<option value = ""></option>
+      								<option value = "yes">Yes</option>
+      								<option value = "no">No</option>
+    							</select>
+  								<center><small>Please make sure all fields are filled out so you don't have to come back later.</small></center>
+  								<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="prevQuestion(3)">Prev</button>&nbsp;<button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(3)">Next</button></center>
+  							</div>
+  						</div>
+  					</div>
+  					<div class = "col mt-5">
+  						<div class="card mt-5 mb-5 border-danger text-danger">
+  							<div class="card-header">Generated Data and Insight
+  							</div>
+  							<div class="card-body">
+  								<ul class="list-group">
+  									<li class="list-group-item">Your Household Additional Carbon Emissions ≈ <b id="carbonFromCoal">0.000</b> pounds/year. <b id ="addCarbInfo" style="display:none;opacity:0;"><i class="fas fa-question-circle" data-toggle="modal" data-target="#modalCrit5"></i></b></li>
+  									<li class="list-group-item" id="houseInfoWood" style="display:none;opacity:0;">Deforestation of the Amazon Rainforest has been occurring at a rapid pace in the last few years. Steve Pratt, an expert in carpentry, states: "It takes more than 20 full-grown Douglas Fir trees to build every 1,000 square feet of structure."</li>
+  									<li class="list-group-item" id="houseInfoConcrete" style="display:none;opacity:0;">The materials used to create concrete is environmentally friendly. The extraction process is not, and neither is its industrial usage. The extraction of concrete can pollute water sources and the application of concrete requires a lot of water. <em class="text-success">Concrete is as environmental friendly as modern houses in first-world countries are going to get. Until there's a huge innovation in houses created using straw, concrete is the way to go.</em></li>
+  									<li class="list-group-item" id="houseInfoSteel" style="display:none;opacity:0;">Steel is highly recyclable but its production process is extremely detrimental to the environment. The manufacturing of steel releases a lot of carbon. <em class="text-success">Steel is becoming more and more clean. What used to be its byproducts are not being sold as cement. Carbon emissions are also being reduced. Maybe one day steel will be 100% green.</em></li>
+  								</ul>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+			<!-- Modal for TOOLTIPS -->	
+			<div class="modal fade" id="modalCrit5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  				<div class="modal-dialog" role="document">
+    				<div class="modal-content">
+      					<div class="modal-header">
+        					<h5 class="modal-title" id="modalCrit5Label">How was carbon dioxide emission calculated?</h5>
+        					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          						<span aria-hidden="true">&times;</span>
+        					</button>
+      					</div>
+      					<div class="modal-body">
+        					A household powered by coal requires approximately 2 metric tons of the fossil fuel. Approximately 5720 pounds of carbon dioxide is released every 1 imperial ton of coal is burned.
+      					</div>
+      					<div class="modal-footer">
+        					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      					</div>
+    				</div>
+  				</div>
+			</div>
+			<!-- Modal END -->
+		</div>
+		<!-- Page 3 END -->
+		<!-- Page 4 START -->
+		<div id="page4" class="h-100" style="display:none;opacity:0;">
+			<div class="container-fluid h-100" style="background-image:url(img/infographic-card3-blurred.png);background-repeat:no-repeat;background-size:100% 100%;" id="containercard3">
+				<div class="row" id="card3">
+					<div id="heightHack" style="height:100vh;"></div>
+					<div class="col mt-5">
+						<div class="card mt-5 mb-5 border-primary text-primary">
+							<div class="card-header"> 
+								<div id="deopacitizecard3" onclick="deOpacitize('card3')">Population (Click Here to View Background)</div>
+								<div id="reopacitizecard3" onclick="reOpacitize('card3')" style="display:none;">Population (Click Here to Hide Background)</div>
+							</div>
+  							<div class="card-body">
+  								<label for = "criteria6">Which country to you live in? If not listed below, choose the closest equivalent.</label>
+    							<select class = "form-control" id = "criteria6">
+    								<option value = ""></option>
+      								<option value = "us">United States</option>
+      								<option value = "cn">China</option>
+      								<option value = "fr">France</option>
+      								<option value = "sa">South Africa</option>
+      								<option value = "zw">Zimbabwe</option>
+      								<option value = "br">Brazil</option>
+      								<option value = "jp">Japan</option>
+      								<option value = "nz">New Zealand</option>
+    							</select>
+    							<label for = "criteria7">Do you have easy access to a fresh source of water?</label>
+    							<select class = "form-control" id = "criteria7">
+    								<option value = ""></option>
+      								<option value = "yes">Yes</option>
+      								<option value = "no">No</option>
+    							</select>
+  								<center><small>Please make sure all fields are filled out so you don't have to come back later.</small></center>
+  								<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="prevQuestion(4)">Prev</button>&nbsp;<button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(4)">Next</button></center>
+  							</div>
+  						</div>
+  					</div>
+  					<div class = "col mt-5">
+  						<div class="card mt-5 mb-5 border-danger text-danger">
+  							<div class="card-header">Generated Data and Insight
+  							</div>
+  							<div class="card-body">
+  								<ul class="list-group">
+  									<li class="list-group-item" id="gotWater1" style="display:none;opacity:0;">
+  										<div>Ever wondered how hard it is to get water when it isn't easily accessible?</div>
+  										<button class="btn btn-outline-secondary" id="waterButton1" onclick="playWaterGame1()">Click for Water</button>
+  										<div id="waterGameText1"></div>
+  										<div id="hiddenCounter1" style="display:none;">0</div>
+  									</li>
+  									<li class="list-group-item" id="gotWater2" style="display:none;opacity:0;">
+  										<div>Ever wondered how easy it is to get water with a faucet?</div>
+  										<button class="btn btn-outline-secondary" id="waterButton2" onclick="playWaterGame2()">Click for Water</button>
+  										<div id="waterGameText2"></div>
+  										<div id="hiddenCounter2" style="display:none;">0</div>
+  									</li>
+  									<li class="list-group-item" id="pyramidUS" style="display:none;opacity:0;">
+  										The United States has a fairly stable population. The average life expectancy here is 79 years.
+  										<canvas id="graph2-1"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
+  									</li>
+  									<li class="list-group-item" id="pyramidCN" style="display:none;opacity:0;">
+  										China's population grow is slowing down. The average life expectancy in the <em>cities</em> is 76 years.
+  										<canvas id="graph2-2"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
+  									</li>
+  									<li class="list-group-item" id="pyramidFR" style="display:none;opacity:0;">
+  										France has a fairly stable population. The average life expectancy here is 82 and a half years.
+  										<canvas id="graph2-3"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
+  									</li>
+  									<li class="list-group-item" id="pyramidSA" style="display:none;opacity:0;">
+  										South Africa is more industrialized than the other African countries, but is still behind compared with the rest of the developed world. The average life expectancy here is 63 years.
+  										<canvas id="graph2-4"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
+  									</li>
+  									<li class="list-group-item" id="pyramidZW" style="display:none;opacity:0;">
+  										Zimbabwe, along with most other African countries, is still industrializing, held back by corrupt governments. The average life expectancy here is 60 years.
+  										<canvas id="graph2-5"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
+  									</li>
+  									<li class="list-group-item" id="pyramidBR" style="display:none;opacity:0;">
+  										Brazil is less developed than the United States. The average life expectancy here is 75 years.
+  										<canvas id="graph2-6"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
+  									</li>
+  									<li class="list-group-item" id="pyramidJP" style="display:none;opacity:0;">
+  										Japan is in its post-industrial transitional phase. The average life expectancy here is 84 years.
+  										<canvas id="graph2-7"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
+  									</li>
+  									<li class="list-group-item" id="pyramidNZ" style="display:none;opacity:0;">
+  										The average life expectancy in New Zealand is 81 and a half years.
+  										<canvas id="graph2-8"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
+  									</li>
+  								</ul>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+		</div>
+		<!-- Page 4 END -->
+		<!-- Page 5 START -->
+		<div id="page5" class="h-100" style="display:none;opacity:0;">
+			<div class="container-fluid h-100" style="background-image:url(img/infographic-card4-blurred.png);background-repeat:no-repeat;background-size:100% 100%;" id="containercard4">
+				<div class="row" id="card4">
+					<div id="heightHack" style="height:100vh;"></div>
+					<div class="col mt-5">
+						<div class="card mt-5 mb-5 border-primary text-primary">
+							<div class="card-header"> 
+								<div id="deopacitizecard4" onclick="deOpacitize('card4')">Land and Water Use (Click Here to View Background)</div>
+								<div id="reopacitizecard4" onclick="reOpacitize('card4')" style="display:none;">Land and Water Use (Click Here to Hide Background)</div>
+							</div>
+  							<div class="card-body">
+								<label for = "criteria8">You and a couple of friends live in a village. They and you hunt in the nearby forest for turkeys every day as a source of sustenance. Everyone only needs to hunt one a day. You enjoy hunting. You see 5 turkeys in the distance, do you shoot them?</label>
+    							<select class = "form-control" id = "criteria8">
+    								<option value = ""></option>
+      								<option value = "yes">Yes</option>
+      								<option value = "no">No</option>
+    							</select>
+  								<label for = "criteria9">Approximately how much chocolate do you eat in a year?</label>
+  								<div class="input-group mb-3">
+    								<input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" placeholder="Enter in pounds" id="criteria9">
+  									<div class="input-group-append">
+    									<button class="btn btn-outline-secondary" onclick="calcChoco()" id="chocoButton">Confirm</button>
+  									</div>
+  								</div>
+  								<label for = "criteria16">Approximately how many times do you flush the toilet each day?</label>
+  								<div class="input-group mb-3">
+    								<input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" placeholder="Number of flushes" id="criteria16">
+  									<div class="input-group-append">
+    									<button class="btn btn-outline-secondary" onclick="calcFlushes()" id="flushButton">Confirm</button>
+  									</div>
+  								</div>
+  								<center><small>Please make sure all fields are filled out so you don't have to come back later.</small></center>
+  								<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="prevQuestion(5)">Prev</button>&nbsp;<button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(5)">Next</button></center>
+  							</div>
+  						</div>
+  					</div>
+  					<div class = "col mt-5">
+  						<div class="card mt-5 mb-5 border-danger text-danger">
+  							<div class="card-header">Generated Data and Insight
+  							</div>
+  							<div class="card-body">
+  								<ul class="list-group">
+  									<li class="list-group-item" id="flushCount" style="display:none;opacity:0;">
+  										You've approximately used <b id="flushGals">0.0</b> gallons of water flushing toilets each day.
+  									</li>
+  									<li class="list-group-item" id="chocoText" style="display:none;opacity:0;">
+  										You've approximately used <b id="chocoWater">0</b> gallons of water to grow chocolate.
+  									</li>
+  									<li class="list-group-item" id="selfishnessTOTC" style="display:none;opacity:0;">
+  										Within a few weeks, everyone in your village was starving and on the brink of death. Apparently, hunting one turkey a day was just the right amount that their population does not start to decline.
+  									</li>
+  									<li class="list-group-item" id="nselfishnessTOTC" style="display:none;opacity:0;">
+  										<em class="text-success">Life goes on in the village as before. Nothing changes. You wonder what would have happened had you shot these turkeys. Within a few weeks, you forget the whole incident.</em>
+  									</li>
+  								</ul>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+		</div>
+		<!-- Page 5 END -->
+		<!-- Page 6 START -->
+		<div id="page6" class="h-100" style="display:none;opacity:0;">
+			<div class="container-fluid h-100" style="background-image:url(img/infographic-card5-blurred.png);background-repeat:no-repeat;background-size:100% 100%;" id="containercard5">
+				<div class="row" id="card5">
+					<div id="heightHack" style="height:100vh;"></div>
+					<div class="col mt-5">
+						<div class="card mt-5 mb-5 border-primary text-primary">
+							<div class="card-header"> 
+								<div id="deopacitizecard5" onclick="deOpacitize('card5')">Energy Resources and Consumption (Click Here to View Background)</div>
+								<div id="reopacitizecard5" onclick="reOpacitize('card5')" style="display:none;">Energy Resources and Consumption (Click Here to Hide Background)</div>
+							</div>
+  							<div class="card-body">
+								<label for = "criteria10">What is your main energy source* at home? *if you selected coal earlier, you can select again here.</label>
+    							<select class = "form-control" id = "criteria10">
+    								<option value = ""></option>
+      								<option value = "solar">Solar Power</option>
+      								<option value = "coal">Coal</option>
+      								<option value = "wind">Wind Power</option>
+      								<option value = "hydro">Hydropower</option>
+      								<option value = "gas">Natural Gas</option>
+      								<option value = "geo">Geothermal</option>
+    							</select>
+    							<label for = "criteria11">Do you actively seek ways to save electricity? (IE turn off the lights to a room when it is not in use.)</label>
+    							<select class = "form-control" id = "criteria11">
+    								<option value = ""></option>
+      								<option value = "yes">Yes</option>
+      								<option value = "no">No</option>
+    							</select>
+  								<center><small>Please make sure all fields are filled out so you don't have to come back later.</small></center>
+  								<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="prevQuestion(6)">Prev</button>&nbsp;<button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(6)">Next</button></center>
+  							</div>
+  						</div>
+  					</div>
+  					<div class = "col mt-5">
+  						<div class="card mt-5 mb-5 border-danger text-danger">
+  							<div class="card-header">Generated Data and Insight
+  							</div>
+  							<div class="card-body">
+  								<ul class="list-group">
+  									<li class="list-group-item text-success" id="saveEnergy" style="display:none;opacity:0;">
+  										You probably saved around $10 for your efforts!
+  									</li>
+  									<li class="list-group-item text-success" id="useSolar" style="display:none;opacity:0;">
+  										Hey, that's a renewable source of energy!
+  									</li>
+  									<li class="list-group-item" id="useCoal" style="display:none;opacity:0;">
+  										Are you trying to kill baby seals?
+  									</li>
+  									<li class="list-group-item text-success" id="useWind" style="display:none;opacity:0;">
+  										Hey, that's a renewable source of energy!
+  									</li>
+  									<li class="list-group-item text-success" id="useHydro" style="display:none;opacity:0;">
+  										Hey, that's a renewable source of energy!
+  									</li>
+  									<li class="list-group-item" id="useGas" style="display:none;opacity:0;">
+  										At least it's not coal, I guess?
+  									</li>
+  									<li class="list-group-item text-success" id="useGeo" style="display:none;opacity:0;">
+  										Hey, that's a renewable source of energy!
+  									</li>
+  								</ul>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+		</div>
+		<!-- Page 6 END -->
+		<!-- Page 7 START -->
+		<div id="page7" class="h-100" style="display:none;opacity:0;">
+			<div class="container-fluid h-100" style="background-image:url(img/infographic-card6-blurred.png);background-repeat:no-repeat;background-size:100% 100%;" id="containercard6">
+				<div class="row" id="card6">
+					<div id="heightHack" style="height:100vh;"></div>
+					<div class="col mt-5">
+						<div class="card mt-5 mb-5 border-primary text-primary">
+							<div class="card-header"> 
+								<div id="deopacitizecard6" onclick="deOpacitize('card6')">Pollution (Click Here to View Background)</div>
+								<div id="reopacitizecard6" onclick="reOpacitize('card6')" style="display:none;">Pollution (Click Here to Hide Background)</div>
+							</div>
+  							<div class="card-body">
+								<label for = "criteria12">How many hours do you drive a week?</label>
+    							<div class="input-group mb-3">
+    								<input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" placeholder="Input integer" id="criteria12">
+  									<div class="input-group-append">
+    									<button class="btn btn-outline-secondary" onclick="calcSelfDrive()" id="selfDriveButton">Confirm</button>
+  									</div>
+  								</div>
+  								<label for = "criteria13">How many hours a week do you take public transport?</label>
+    							<div class="input-group mb-3">
+    								<input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" placeholder="Input integer" id="criteria13">
+  									<div class="input-group-append">
+    									<button class="btn btn-outline-secondary" onclick="calcGangDrive()" id="gangDriveButton">Confirm</button>
+  									</div>
+  								</div>
+  								<label for = "criteria14">How many hours do you spend flying each year?</label>
+    							<div class="input-group mb-3">
+    								<input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" placeholder="Input integer" id="criteria14">
+  									<div class="input-group-append">
+    									<button class="btn btn-outline-secondary" onclick="calcAirplane()" id="airplaneButton">Confirm</button>
+  									</div>
+  								</div>
+  								<center><small>Please make sure all fields are filled out so you don't have to come back later.</small></center>
+  								<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="prevQuestion(7)">Prev</button>&nbsp;<button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(7)">Next</button></center>
+  							</div>
+  						</div>
+  					</div>
+  					<div class = "col mt-5">
+  						<div class="card mt-5 mb-5 border-danger text-danger">
+  							<div class="card-header">Generated Data and Insight
+  							</div>
+  							<div class="card-body">
+  								<ul class="list-group">
+  									<li class="list-group-item" id="driveCar" style="display:none;opacity:0;">
+  										You've generated approximately <b id="carCO2">0</b> pounds of carbon dioxide from driving your car just that one week.
+  									</li>
+  									<li class="list-group-item" id="pubTransport" style="display:none;opacity:0;">
+  										<em class="text-success">Taking public transport instead of driving in your own car is much cleaner for the planet, since more people are using the same amount of gas to get to one place. Doing some division, you probably only generated <b id="busCO2"></b> pounds of carbon dioxide!</em>
+  									</li>
+  									<li class="list-group-item" id="flyAirplane" style="display:none;opacity:0;">
+  										You've generated approximately <b id="planeCO2">0</b> pounds of carbon dioxide from a year of flying on an airplane. <s>Orange man bad</s> Flying bad.
+  									</li>
+  								</ul>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+		</div>
+		<!-- Page 7 END -->
+		<!-- Page 8 START -->
+		<div id="page8" class="h-100" style="display:none;opacity:0;">
+			<div class="container-fluid h-100" style="background-image:url(img/infographic-card7-blurred.png);background-repeat:no-repeat;background-size:100% 100%;" id="containercard7">
+				<div class="row" id="card7">
+					<div id="heightHack" style="height:100vh;"></div>
+					<div class="col mt-5">
+						<div class="card mt-5 mb-5 border-primary text-primary">
+							<div class="card-header"> 
+								<div id="deopacitizecard7" onclick="deOpacitize('card7')">Global Change (Click Here to View Background)</div>
+								<div id="reopacitizecard7" onclick="reOpacitize('card7')" style="display:none;">Global Change (Click Here to Hide Background)</div>
+							</div>
+  							<div class="card-body">
+								<label for = "criteria15">You see a friend posting on Facebook about a planned park cleanup event on Saturday, a day you are free on. What do you do?</label>
+    							<select class = "form-control" id = "criteria15">
+    								<option value = ""></option>
+      								<option value = "yes">Help them during the cleanup.</option>
+      								<option value = "no">Ignore the post.</option>
+    							</select>
+  								<center><small>Please make sure all fields are filled out so you don't have to come back later.</small></center>
+  								<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="prevQuestion(8)">Prev</button>&nbsp;<button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(8)">Next</button></center>
+  							</div>
+  						</div>
+  					</div>
+  					<div class = "col mt-5">
+  						<div class="card mt-5 mb-5 border-danger text-danger">
+  							<div class="card-header">Generated Data and Insight
+  							</div>
+  							<div class="card-body">
+  								<ul class="list-group">
+  									<li class="list-group-item" id="friendFB" style="display:none;opacity:0;">
+  									</li>
+  								</ul>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+		</div>
+		<!-- Page 8 END -->
+		<!-- Page 9 START -->
+		<div id="page9" class="h-100" style="display:none;opacity:0;">
+			<div class="container-fluid h-100" style="background-image:url(img/forest1.jpeg);background-repeat:no-repeat;background-size:100% 100%;">
+				<center>
+					<div class="row container">
+						<div id="heightHack" style="height:100vh"></div>
+						<div class="col mt-5">
+							<div class="card mt-5 border-success text-success">
+  								<div class="card-body">
+  									<div class="alert alert-danger" role="alert" id="didNotFillAll" style="display:none;">
+  										Please go back and fill out all questions.
+									</div>
+									<h3 id="reachedEnd">You've reached the end. Press 'Calculate!' to get your life rank and statistics.</h3>
+  									<center><button class="btn btn-outline-secondary" id="goBack" onclick="prevQuestion(9)">Go Back</button>&nbsp;<button class="btn btn-outline-secondary" id="calcuButton" onclick="finalCalc()">Calculate!</button></center>
+  									<center id="lifeRank"></center>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</center>
+			</div>	
+		</div>
+		<!-- Page 9 END -->
+		<!-- Some scripts need to come last in order for them to work -->
+		<script src="js/chart1.js"></script>
+		<script src="js/chart2-1.js"></script>
+		<script src="js/chart2-2.js"></script>
+		<script src="js/chart2-3.js"></script>
+		<script src="js/chart2-4.js"></script>
+		<script src="js/chart2-5.js"></script>
+		<script src="js/chart2-6.js"></script>
+		<script src="js/chart2-7.js"></script>
+		<script src="js/chart2-8.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js" integrity="sha256-nviKEC91moGfyFMMzT31WyNxuAvIIgOSkSGi7K6U7EU=" crossorigin="anonymous"></script>
+	</body>
+</html>
