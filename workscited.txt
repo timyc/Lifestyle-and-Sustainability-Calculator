@@ -12,3 +12,5 @@ typically 40 people on a bus
 198.416/hr for airplane
 
 // add how many times you flush the damn toilet
+// add info about each energy source
+// edit quirky responses

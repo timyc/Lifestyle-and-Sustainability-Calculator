@@ -489,7 +489,7 @@ function calcAirplane() {
 $(function() {
     $('#criteria15').change(function(){
         if($('#criteria15').val() == 'yes') {
-            document.getElementById('friendFB').innerHTML = "<em class='text-success'>Good job helping the environment!</em>";
+            document.getElementById('friendFB').innerHTML = "<em class='text-success'>Although a single cleanup would barely affec the whole scheme of things, this shows that you are willing to sacrifice your own time for the environment.</em>";
             $('#friendFB').fadeTo(1000, 1, function() { 
                 document.getElementById('friendFB').style.display = "";
             });
@@ -530,6 +530,7 @@ function finalCalc() {
     document.getElementById('didNotFillAll').style.display = "none";
     document.getElementById('lifeRank').innerHTML = "";
     var points = 0;
+    var age = 0;
     var criteria1 = document.getElementById('criteria1').value;
     var criteria2 = document.getElementById('criteria2').value;
     var criteria4 = document.getElementById('criteria4').value;
@@ -548,14 +549,44 @@ function finalCalc() {
         document.getElementById('didNotFillAll').style.display = "";
         return false;
     };
+    if (criteria6 == "us") {
+        age = 79;
+    } else if (criteria6 == "cn") {
+        age = 76;
+    } else if (criteria6 == "fr") {
+        age = 82;
+    } else if (criteria6 == "sa") {
+        age = 63;
+    } else if (criteria6 == "zw") {
+        age = 61;
+    } else if (criteria6 == "br") {
+        age = 75;
+    } else if (critiera6 == "jp") {
+        age = 84;
+    } else {
+        age = 82;
+    }
+    document.getElementById('miscText').innerHTML += "<u>Miscellaneous data based on responses</u>";
     if (criteria1 == "no") {
         points += 5;
+        age += 1;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Homegrown produce is definitely healthier, considering you don't use pesticides and either use your own urine or don't use fertilizers at all. </li>";
+    } else {
+        age -= 1;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Not only does consuming grocery store vegetables use a lot of water, there will also be pesticide residues regardless of whether the produce is organic or not. </li>";
     }
     if (criteria2 == "no") {
         points += 5;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Not only did you save money by not buying diamonds for cosmetic use, you are also helping the environment. </li>";
+    } else {
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Using diamonds cosmetically is actually pointless and harms the environment for no reason. </li>";
     }
     if (document.getElementById('criteria3').value < 3) {
         points += 5;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Consuming less meat helps the environment and also your own personal health. </li>";
+    } else if (document.getElementById('criteria3').value > 10) {
+        age -= 2;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Scientific studies have shown that consuming excess meat can reduce a person's lifespan. </li>";
     }
     if (criteria4 == "concrete") {
         points += 5;
@@ -565,59 +596,91 @@ function finalCalc() {
     }
     if (criteria5 == "no") {
         points += 5;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Using less coal means cleaner air to breathe, reducing the probability of certain lung diseases. </li>";
+    } else {
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;The amount of people dying each year from air pollution is much higher in China and India partly because of their excess coal usage. </li>";
+    }
+    if (criteria7 == "no") {
+        age -= 1;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Water-borne diseases are more common when people don't have easy access to fresh and clean water sources. </li>";
+    } else {
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;With easy access to fresh and clean water sources, water-borne diseases are less likely to find its way into your body. </li>";
     }
     if (criteria8 == "no") {
         points += 5;
     }
-    if (criteria9 <= 2) {
+    if (criteria9 <= 5) {
         points += 5;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Light consumption of extremely dark chocolate is benefitial to your health. </li>";
+    } else if (criteria9 > 22) {
+        age -= 2;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Excess chocolate consumption can lead to diabetes and other bad things. </li>";
     }
     if ((criteria10 != 'coal') && (criteria10 != 'gas')) {
         points += 5;
+    } else {
+        age -=2;
     }
     if (criteria11 == "yes") {
         points += 5;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Little actions like turning off the lights in your room when you're not in it can add up over time. </li>";
+    } else {
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Granted that unnecessary electricity usage is minimal if you don't turn off the lights for 5 minutes, this usage can build up over time. </li>";
     }
     if (criteria12 < 7) {
         points += 5;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Walking is a great alternative to driving. </li>";
+    } else {
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;You should consider walking to a location if it's less than a mile away. </li>";
     }
     if (criteria14 < 10) {
         points += 5;
+    } else {
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Minimizing airplane travel time is a great way to reduce carbon footprints. </li>";
     }
     if (criteria15 == "yes") {
         points += 5;
     }
     if (criteria16 <= 3) {
         points += 3;
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Flushing the toilet once before you take a dump and once after is plenty. </li>";
+    } else {
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;If you urine smells bad enough that you have to flush each time after going, you should start drinking a little bit more water. </li>";
     }
     if (points >= 50) {
         document.getElementById('reachedEnd').style.display = "none";
         document.getElementById('calcuButton').style.display = "none";
         document.getElementById('goBack').style.display = "none";
         document.getElementById('lifeRank').innerHTML += "<h1>Your life rank: </h1><img src='img/rankA.png' width='150' height='150' />";
+        document.getElementById('earthNum').innerHTML += "If everyone lived like you, we'd still need <b class='text-danger'>1.5</b> Earths to sustain everyone.";
     }
     if (points >= 40 && points < 50) {
         document.getElementById('reachedEnd').style.display = "none";
         document.getElementById('calcuButton').style.display = "none";
         document.getElementById('goBack').style.display = "none";
         document.getElementById('lifeRank').innerHTML += "<h1>Your life rank: </h1><img src='img/rankB.png' width='150' height='150' />";
+        document.getElementById('earthNum').innerHTML += "If everyone lived like you, we'd still need <b class='text-danger'>3</b> Earths to sustain everyone.";
     }
     if (points >= 30 && points < 40) {
         document.getElementById('reachedEnd').style.display = "none";
         document.getElementById('calcuButton').style.display = "none";
         document.getElementById('goBack').style.display = "none";
         document.getElementById('lifeRank').innerHTML += "<h1>Your life rank: </h1><img src='img/rankC.png' width='150' height='150' />";
+        document.getElementById('earthNum').innerHTML += "If everyone lived like you, we'd need <b class='text-danger'>5</b> Earths to sustain everyone.";
     }
     if (points >= 20 && points < 30) {
         document.getElementById('reachedEnd').style.display = "none";
         document.getElementById('calcuButton').style.display = "none";
         document.getElementById('goBack').style.display = "none";
         document.getElementById('lifeRank').innerHTML += "<h1>Your life rank: </h1><img src='img/rankD.png' width='150' height='150' />";
+        document.getElementById('earthNum').innerHTML += "If everyone lived like you, we'd need <b class='text-danger'>7</b> Earths to sustain everyone.";
     }
     if (points < 20) {
         document.getElementById('reachedEnd').style.display = "none";
         document.getElementById('calcuButton').style.display = "none";
         document.getElementById('goBack').style.display = "none";
         document.getElementById('lifeRank').innerHTML += "<h1>Your life rank: </h1><img src='img/rankF.png' width='150' height='150' />";
+        document.getElementById('earthNum').innerHTML += "If everyone lived like you, we'd need over <b class='text-danger'>9</b> Earths to sustain everyone.";
     }
+    document.getElementById('lifeAge').innerHTML += "Your approximated lifespan: " + "<b class='text-primary'>" + age + "</b> years";
 }
