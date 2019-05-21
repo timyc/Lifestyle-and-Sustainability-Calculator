@@ -13,6 +13,7 @@ new Chart(document.getElementById("graph2-8"), {
     options: {
       legend: { display: false 
       },
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'New Zealand Population Breakdown (Total 4.688m)'

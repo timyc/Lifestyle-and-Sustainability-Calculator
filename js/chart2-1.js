@@ -13,6 +13,7 @@ new Chart(document.getElementById("graph2-1"), {
     options: {
       legend: { display: false 
       },
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'United States Population Breakdown (Total 331m)'

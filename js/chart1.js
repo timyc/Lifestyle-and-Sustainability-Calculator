@@ -30,6 +30,7 @@ new Chart(document.getElementById("graph1"), {
       display: true,
       text: 'Greenland Ice Albedo Approximation'
     },
+    maintainAspectRatio: false,
     scales: {
       yAxes: [{
         scaleLabel: {

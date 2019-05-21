@@ -13,6 +13,7 @@ new Chart(document.getElementById("graph2-3"), {
     options: {
       legend: { display: false 
       },
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'France Population Breakdown (Total 65m)'

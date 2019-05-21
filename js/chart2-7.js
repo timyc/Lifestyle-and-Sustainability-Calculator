@@ -13,6 +13,7 @@ new Chart(document.getElementById("graph2-7"), {
     options: {
       legend: { display: false 
       },
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'Japan Population Breakdown (Total 125m)'

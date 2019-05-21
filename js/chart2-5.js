@@ -13,6 +13,7 @@ new Chart(document.getElementById("graph2-5"), {
     options: {
       legend: { display: false 
       },
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'Zimbabwe Population Breakdown (Total 17m)'

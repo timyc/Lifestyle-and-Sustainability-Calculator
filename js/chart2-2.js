@@ -13,6 +13,7 @@ new Chart(document.getElementById("graph2-2"), {
     options: {
       legend: { display: false 
       },
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'China Population Breakdown (Total 1.398b)'

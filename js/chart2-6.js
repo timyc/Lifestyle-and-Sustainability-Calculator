@@ -13,6 +13,7 @@ new Chart(document.getElementById("graph2-6"), {
     options: {
       legend: { display: false 
       },
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'Brazil Population Breakdown (Total 214m)'

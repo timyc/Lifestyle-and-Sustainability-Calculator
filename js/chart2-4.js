@@ -13,6 +13,7 @@ new Chart(document.getElementById("graph2-4"), {
     options: {
       legend: { display: false 
       },
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: 'South Africa Population Breakdown (Total 56m)'
