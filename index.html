@@ -65,7 +65,7 @@
   									</p>
   									<img src="img/deadtree.png" width="300px" height="300px" />
   									<div id="preloadText"></div><br/>
-  									<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(1)">Let's Start!</button>&nbsp;<button class="btn btn-outline-secondary" onclick="preloadImages()" id="preloadIButton">Preload Images (9.1MB)</button></center>
+  									<center><button class="btn btn-outline-secondary" id="button-addon2" onclick="nextQuestion(1)">Let's Start! <b id ="versionString">v</b></button>&nbsp;<button class="btn btn-outline-secondary" onclick="preloadImages()" id="preloadIButton">Preload Images (9.1MB)</button></center>
   									<center><small>Preloading images makes viewing background images more smooth.</small></center>
                     <footer class="container">
                       <hr>
@@ -298,7 +298,7 @@
   										<canvas id="graph2-5"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
   									</li>
   									<li class="list-group-item" id="pyramidBR" style="display:none;opacity:0;">
-  										Brazil is less developed than the United States. The average life expectancy here is 75 years.
+  										Brazil is less developed than the United States. The average life expectancy here is 75 years. In other South American countries, there are more people who are under the age of 30.
   										<canvas id="graph2-6"></canvas><center><i class="text-primary">Data from PopulationPyramids.net</i></center>
   									</li>
   									<li class="list-group-item" id="pyramidJP" style="display:none;opacity:0;">
@@ -563,9 +563,11 @@
 									  <h3 id="reachedEnd">You've reached the end. Press 'Calculate!' to get your life rank and statistics.</h3>
   									  <center><button class="btn btn-outline-secondary" id="goBack" onclick="prevQuestion(9)">Go Back</button>&nbsp;<button class="btn btn-outline-secondary" id="calcuButton" onclick="finalCalc()">Calculate!</button></center>
   									  <center id="lifeRank"></center>
-                      <div align="left" class="text-dark">
+                      <div align="left" class="text-dark" id="endResults" style="display:none;opacity:0;">
                         <h2 id="earthNum"></h2>
                         <h3 id="lifeAge"></h3>
+                        <h3 id="yCarbon"></h3>
+                        <h3 id="yWater"></h3>
                         <h4 id="miscText"></h4>
                         <ul id="otherStats" class="list-group"></ul>
                       </div>

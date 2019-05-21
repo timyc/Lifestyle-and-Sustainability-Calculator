@@ -1,3 +1,7 @@
+// GLOBAL VARS
+var version = 0.21;
+var waterT = 0.000;
+var carbonT = 0.000;
 // Ajax to prevent page refresh on submit
 $('#submit').submit(function () {
  	return false;
@@ -7,6 +11,7 @@ $(document).ready(function() {
     $("#criteria3").on("slide", function(slideEvt) {
         $("#criteria3SliderVal").text(slideEvt.value);
     });
+    document.getElementById('versionString').innerHTML += version;
 });
 $("#chocoButton").click(function(event) {
   event.preventDefault();
@@ -545,7 +550,8 @@ function finalCalc() {
     var criteria13 = document.getElementById('criteria13').value;
     var criteria14 = document.getElementById('criteria14').value;
     var criteria15 = document.getElementById('criteria15').value;
-    if (criteria1 == "" || criteria2 == "" || criteria4 == "" || criteria5 == "" || criteria6 == "" || criteria7 == "" || criteria8 == "" || criteria9 == "" || criteria10 == "" || criteria11 == "" || criteria12 == "" || criteria13 == "" || criteria14 == "" || criteria15 == "") {
+    var criteria16 = document.getElementById('criteria16').value;
+    if (criteria1 == "" || criteria2 == "" || criteria4 == "" || criteria5 == "" || criteria6 == "" || criteria7 == "" || criteria8 == "" || criteria9 == "" || criteria10 == "" || criteria11 == "" || criteria12 == "" || criteria13 == "" || criteria14 == "" || criteria15 == "" || criteria16 == "") {
         document.getElementById('didNotFillAll').style.display = "";
         return false;
     };
@@ -566,13 +572,15 @@ function finalCalc() {
     } else {
         age = 82;
     }
-    document.getElementById('miscText').innerHTML += "<u>Miscellaneous data based on responses</u>";
+    carbonT += ((((36.67/23.6) * criteria13)*20)/40)*52;
+    document.getElementById('miscText').innerHTML += "<u>Miscellaneous tips/data based on responses</u>";
     if (criteria1 == "no") {
         points += 5;
         age += 1;
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Homegrown produce is definitely healthier, considering you don't use pesticides and either use your own urine or don't use fertilizers at all. </li>";
     } else {
         age -= 1;
+        waterT += 9877;
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Not only does consuming grocery store vegetables use a lot of water, there will also be pesticide residues regardless of whether the produce is organic or not. </li>";
     }
     if (criteria2 == "no") {
@@ -598,6 +606,7 @@ function finalCalc() {
         points += 5;
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Using less coal means cleaner air to breathe, reducing the probability of certain lung diseases. </li>";
     } else {
+        carbonT += 12610.426;
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;The amount of people dying each year from air pollution is much higher in China and India partly because of their excess coal usage. </li>";
     }
     if (criteria7 == "no") {
@@ -610,9 +619,11 @@ function finalCalc() {
         points += 5;
     }
     if (criteria9 <= 5) {
+        waterT += (criteria9*2061);
         points += 5;
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Light consumption of extremely dark chocolate is benefitial to your health. </li>";
     } else if (criteria9 > 22) {
+        waterT += (criteria9*2061);
         age -= 2;
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Excess chocolate consumption can lead to diabetes and other bad things. </li>";
     }
@@ -628,14 +639,18 @@ function finalCalc() {
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Granted that unnecessary electricity usage is minimal if you don't turn off the lights for 5 minutes, this usage can build up over time. </li>";
     }
     if (criteria12 < 7) {
+        carbonT += (criteria12*31*52);
         points += 5;
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Walking is a great alternative to driving. </li>";
     } else {
+        carbonT += (criteria12*31*52);
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;You should consider walking to a location if it's less than a mile away. </li>";
     }
     if (criteria14 < 10) {
+        carbonT += (criteria14*198*52);
         points += 5;
     } else {
+        carbonT += (criteria14*198*52);
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Minimizing airplane travel time is a great way to reduce carbon footprints. </li>";
     }
     if (criteria15 == "yes") {
@@ -645,6 +660,7 @@ function finalCalc() {
         points += 3;
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Flushing the toilet once before you take a dump and once after is plenty. </li>";
     } else {
+        waterT += (criteria16*1.6*365);
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;If you urine smells bad enough that you have to flush each time after going, you should start drinking a little bit more water. </li>";
     }
     if (points >= 50) {
@@ -683,4 +699,9 @@ function finalCalc() {
         document.getElementById('earthNum').innerHTML += "If everyone lived like you, we'd need over <b class='text-danger'>9</b> Earths to sustain everyone.";
     }
     document.getElementById('lifeAge').innerHTML += "Your approximated lifespan: " + "<b class='text-primary'>" + age + "</b> years";
+    document.getElementById('yCarbon').innerHTML += "Your unnecessary yearly carbon output: " + "<b class='text-warning'>" + carbonT + "</b> pounds";
+    document.getElementById('yWater').innerHTML += "Your unnecessary yearly water usage: " + "<b class='text-warning'>" + waterT + "</b> gallons <br />";
+    $('#endResults').fadeTo(1000, 1, function() { 
+        document.getElementById('endResults').style.display = "";
+    });
 }
