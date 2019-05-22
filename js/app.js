@@ -567,7 +567,7 @@ function finalCalc() {
         age = 61;
     } else if (criteria6 == "br") {
         age = 75;
-    } else if (critiera6 == "jp") {
+    } else if (criteria6 == "jp") {
         age = 84;
     } else {
         age = 82;
