@@ -1,5 +1,5 @@
 // GLOBAL VARS
-var version = 0.23;
+var version = 0.24;
 var waterT = 0.000;
 var carbonT = 0.000;
 // Ajax to prevent page refresh on submit
@@ -625,7 +625,7 @@ function finalCalc() {
     } else if (criteria9 > 22) {
         waterT += (criteria9*2061);
         age -= 2;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Excess chocolate consumption can lead to diabetes and other bad things. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Excess chocolate consumption can lead to diabetes and other bad things. <b id='text-danger'>(-)</b></li>";
     }
     if ((criteria10 != 'coal') && (criteria10 != 'gas')) {
         points += 5;
@@ -644,7 +644,7 @@ function finalCalc() {
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Walking is a great alternative to driving. <b id='text-success'>(+)</b></li>";
     } else {
         carbonT += (criteria12*31*52);
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;You should consider walking to a location if it's less than a mile away. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;You should consider walking to a location if it's less than a mile away. <b id='text-danger'>(-)</b></li>";
     }
     if (criteria14 < 10) {
         carbonT += (criteria14*198*52);
