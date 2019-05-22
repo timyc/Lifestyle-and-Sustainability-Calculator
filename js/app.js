@@ -1,5 +1,5 @@
 // GLOBAL VARS
-var version = 0.21;
+var version = 0.23;
 var waterT = 0.000;
 var carbonT = 0.000;
 // Ajax to prevent page refresh on submit
