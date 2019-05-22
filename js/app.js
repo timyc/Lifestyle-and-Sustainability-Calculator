@@ -577,24 +577,24 @@ function finalCalc() {
     if (criteria1 == "no") {
         points += 5;
         age += 1;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Homegrown produce is definitely healthier, considering you don't use pesticides and either use your own urine or don't use fertilizers at all. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Homegrown produce is definitely healthier, considering you don't use pesticides and either use your own urine or don't use fertilizers at all. <b id='text-success'>(+)</b></li>";
     } else {
         age -= 1;
         waterT += 9877;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Not only does consuming grocery store vegetables use a lot of water, there will also be pesticide residues regardless of whether the produce is organic or not. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Not only does consuming grocery store vegetables use a lot of water, there will also be pesticide residues regardless of whether the produce is organic or not. <b id='text-danger'>(-)</b></li>";
     }
     if (criteria2 == "no") {
         points += 5;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Not only did you save money by not buying diamonds for cosmetic use, you are also helping the environment. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Not only did you save money by not buying diamonds for cosmetic use, you are also helping the environment. <b id='text-success'>(+)</b></li>";
     } else {
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Using diamonds cosmetically is actually pointless and harms the environment for no reason. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Using diamonds cosmetically is actually pointless and harms the environment for no reason. <b id='text-danger'>(-)</b></li>";
     }
     if (document.getElementById('criteria3').value < 3) {
         points += 5;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Consuming less meat helps the environment and also your own personal health. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Consuming less meat helps the environment and also your own personal health. <b id='text-success'>(+)</b></li>";
     } else if (document.getElementById('criteria3').value > 10) {
         age -= 2;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Scientific studies have shown that consuming excess meat can reduce a person's lifespan. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Scientific studies have shown that consuming excess meat can reduce a person's lifespan. <b id='text-danger'>(-)</b></li>";
     }
     if (criteria4 == "concrete") {
         points += 5;
@@ -604,16 +604,16 @@ function finalCalc() {
     }
     if (criteria5 == "no") {
         points += 5;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Using less coal means cleaner air to breathe, reducing the probability of certain lung diseases. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Using less coal means cleaner air to breathe, reducing the probability of certain lung diseases. <b id='text-success'>(+)</b></li>";
     } else {
         carbonT += 12610.426;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;The amount of people dying each year from air pollution is much higher in China and India partly because of their excess coal usage. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;The amount of people dying each year from air pollution is much higher in China and India partly because of their excess coal usage. <b id='text-danger'>(-)</b></li>";
     }
     if (criteria7 == "no") {
         age -= 1;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Water-borne diseases are more common when people don't have easy access to fresh and clean water sources. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Water-borne diseases are more common when people don't have easy access to fresh and clean water sources. You do though. <b id='text-success'>(+)</b></li>";
     } else {
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;With easy access to fresh and clean water sources, water-borne diseases are less likely to find its way into your body. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;With easy access to fresh and clean water sources, water-borne diseases are less likely to find its way into your body. <b id='text-danger'>(-)</b></li>";
     }
     if (criteria8 == "no") {
         points += 5;
@@ -621,7 +621,7 @@ function finalCalc() {
     if (criteria9 <= 5) {
         waterT += (criteria9*2061);
         points += 5;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Light consumption of extremely dark chocolate is benefitial to your health. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Light consumption of extremely dark chocolate is benefitial to your health. <b id='text-success'>(+)</b></li>";
     } else if (criteria9 > 22) {
         waterT += (criteria9*2061);
         age -= 2;
@@ -634,14 +634,14 @@ function finalCalc() {
     }
     if (criteria11 == "yes") {
         points += 5;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Little actions like turning off the lights in your room when you're not in it can add up over time. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Little actions like turning off the lights in your room when you're not in it can add up over time. <b id='text-success'>(+)</b></li>";
     } else {
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Granted that unnecessary electricity usage is minimal if you don't turn off the lights for 5 minutes, this usage can build up over time. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Granted that unnecessary electricity usage is minimal if you don't turn off the lights for 5 minutes, this usage can build up over time. <b id='text-danger'>(-)</b></li>";
     }
     if (criteria12 < 7) {
         carbonT += (criteria12*31*52);
         points += 5;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Walking is a great alternative to driving. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Walking is a great alternative to driving. <b id='text-success'>(+)</b></li>";
     } else {
         carbonT += (criteria12*31*52);
         document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;You should consider walking to a location if it's less than a mile away. </li>";
@@ -651,17 +651,17 @@ function finalCalc() {
         points += 5;
     } else {
         carbonT += (criteria14*198*52);
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Minimizing airplane travel time is a great way to reduce carbon footprints. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Minimizing airplane travel time is a great way to reduce carbon footprints. Travel less by air. <b id='text-danger'>(-)</b></li>";
     }
     if (criteria15 == "yes") {
         points += 5;
     }
     if (criteria16 <= 3) {
         points += 3;
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Flushing the toilet once before you take a dump and once after is plenty. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;Flushing the toilet once before you take a dump and once after is plenty. <b id='text-success'>(+)</b></li>";
     } else {
         waterT += (criteria16*1.6*365);
-        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;If you urine smells bad enough that you have to flush each time after going, you should start drinking a little bit more water. </li>";
+        document.getElementById('otherStats').innerHTML += "<li class='list-group-item'>&bull;&nbsp;If you urine smells bad enough that you have to flush each time after going, you should start drinking a little bit more water. <b id='text-danger'>(-)</b></li>";
     }
     if (points >= 50) {
         document.getElementById('reachedEnd').style.display = "none";
