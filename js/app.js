@@ -1,5 +1,5 @@
 // GLOBAL VARS
-var version = 0.21;
+var version = 0.19;
 var waterT = 0.000;
 var carbonT = 0.000;
 // Ajax to prevent page refresh on submit
@@ -311,7 +311,7 @@ function playWaterGame1() {
             document.getElementById('waterGameText1').innerHTML = "You are walking to get water. Keep clicking.";
             break;
         case 10:
-            document.getElementById('waterGameText1').innerHTML = "You are STILL walking to get water. Surprised? Keep clicking.";
+            document.getElementById('waterGameText1').innerHTML = "You are STILL walking to get water. Keep clicking.";
             break;
         case 20:
             document.getElementById('waterGameText1').innerHTML = "You are almost to the halfway point of your journey. Keep clicking.";
@@ -319,14 +319,14 @@ function playWaterGame1() {
         case 30:
             document.getElementById('waterGameText1').innerHTML = "You are finally at your local river to get water. Keep clicking.";
             break;
-        case 35:
+        case 40:
             document.getElementById('waterGameText1').innerHTML = "You finished gathering water, time to go back. Keep clicking.";
             break;
-        case 40:
+        case 50:
             document.getElementById('waterGameText1').innerHTML = "Ah here we go walkin' again. Keep clicking.";
             break;
-        case 50:
-            document.getElementById('waterGameText1').innerHTML = "You've finally walked home and half the water you collected has evaporated. Also the water isn't even clean. Now, if you want to see how this compares to having a easily accessable source of water, select 'no' for the question.";
+        case 60:
+            document.getElementById('waterGameText1').innerHTML = "You've finally walked home and quite a bit of the water you collected has evaporated. I hope you drank some at the river. Also the water isn't even clean.";
             break;
     }
 }
